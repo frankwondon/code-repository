@@ -20,7 +20,7 @@ public class DemoAnnotatedDepthCrawler extends BreadthCrawler {
         page.select("table");
         Links links = page.links();
         RegexRule regexRule=new RegexRule();
-        regexRule.addNegative("/*.rpm&/");
+        regexRule.addPositive("https://archive.cloudera.com/cdh6/6.1.1/redhat7/yum/RPMS/noarch/.*.rpm");
         links.filterByRegex(regexRule);
         Iterator<String> iterator = links.iterator();
         iterator.forEachRemaining(str -> {
