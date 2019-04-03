@@ -8,6 +8,7 @@ import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
 import cn.edu.hfut.dmic.webcollector.plugin.net.OkHttpRequester;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import okhttp3.Request;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -54,13 +55,26 @@ public class ZhiHuCrawler extends BreadthCrawler {
 
     @Override
     public void visit(Page page, CrawlDatums next) {
-        System.out.println(page.jsonObject());
+        pars(page.jsonObject());
         next.add("https://www.zhihu.com/api/v3/feed/topstory/recommend?session_token=a074b25b71b0dadd39ec79da41ace2b0&desktop=true&page_number="+pageNum.incrementAndGet()+"&limit=10&action=down");
     }
 
     public void pars(JsonObject jsonObject){
         JsonArray data = jsonObject.getAsJsonArray("data");
+        data.forEach(jsonElement -> {
+            JsonObject obj = jsonElement.getAsJsonObject();
+            if (obj.get("type").getAsString().equals("feed")){
+                JsonObject target = obj.getAsJsonObject("target");
+                if (target.get("type").getAsString().equals("answer")){
+                    JsonObject question = target.getAsJsonObject("question");
+                    System.out.println(question.get("title"));
+                }else{
+                    System.out.println(target.get("title"));
+                }
 
+
+            }
+        });
     }
 
     public static void main(String[] args) throws Exception {
