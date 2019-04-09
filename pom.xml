@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>example</module>
-        <module>spark</module>
+        <module>hadoop</module>
     </modules>
     <properties>
         <v.lombok>1.18.2</v.lombok>
