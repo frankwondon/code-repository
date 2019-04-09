@@ -11,6 +11,7 @@
     <modules>
         <module>example</module>
         <module>hadoop</module>
+        <module>jvm</module>
     </modules>
     <properties>
         <v.lombok>1.18.2</v.lombok>
