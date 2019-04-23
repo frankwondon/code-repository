@@ -27,7 +27,7 @@ public class RecursiveExecute {
             System.out.println("===========出错，用时"+stopwatch.stop().elapsed(TimeUnit.MILLISECONDS)+"ms===============");
             System.out.println("递归深度："+atomicLong);
             System.out.println("==============================");
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
